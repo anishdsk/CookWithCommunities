@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var passwordForm = document.getElementById('passwordForm');
   var formContainer = document.getElementById('formContainer');
   var initialPasswordHash = 'a794e600d504779d87143f73a48aa0f9553c3c3e2b9acdbb17a4ea4ff4c4f01f';
+
   // Store the hashed password in localStorage if it doesn't exist
   if (!localStorage.getItem('passwordHash')) {
     localStorage.setItem('passwordHash', initialPasswordHash);
@@ -181,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var showEventForm = function showEventForm() {
     var eventForm = document.createElement('form');
     eventForm.id = 'eventForm';
-    eventForm.innerHTML = "\n            <label for=\"eventName\">Event name:</label>\n            <input type=\"text\" id=\"eventName\" name=\"eventName\" required>\n            <br>\n            <label for=\"eventDate\">Event date:</label>\n            <input type=\"date\" id=\"eventDate\" name=\"eventDate\" required>\n            <br>\n            <label for=\"eventTime\">Event time:</label>\n            <input type=\"time\" id=\"eventTime\" name=\"eventTime\" required>\n            <br><br>\n            <button type=\"submit\">Create event</button>\n        ";
+    eventForm.innerHTML = "\n            <label for=\"eventName\">Event name:</label>\n            <input type=\"text\" id=\"eventName\" name=\"eventName\" required>\n            <br>\n            <label for=\"eventDate\">Event date:</label>\n            <input type=\"date\" id=\"eventDate\" name=\"eventDate\" required>\n            <br>\n            <label for=\"eventTime\">Event time:</label>\n            <input type=\"time\" id=\"eventTime\" name=\"eventTime\" required>\n            <br>\n            <button type=\"submit\"><b>Create Event</b></button>\n        ";
     formContainer.innerHTML = '';
     formContainer.appendChild(eventForm);
 
@@ -216,10 +217,26 @@ document.addEventListener('DOMContentLoaded', function () {
     var storedEvents = JSON.parse(localStorage.getItem('events')) || [];
     storedEvents.forEach(function (eventData) {
       var listItem = document.createElement('li');
-      listItem.textContent = "Event: ".concat(eventData.eventName, " | Date: ").concat(eventData.eventDate, " | Time: ").concat(eventData.eventTime);
+      listItem.textContent = "Event Name: ".concat(eventData.eventName, ", Event Date: ").concat(eventData.eventDate, ", Event Time: ").concat(eventData.eventTime);
       eventList.appendChild(listItem);
     });
   };
+
+  // Function to filter out expired events from localStorage
+  var removeExpiredEvents = function removeExpiredEvents() {
+    var storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+    var currentTime = new Date();
+    var filteredEvents = storedEvents.filter(function (eventData) {
+      var eventDateTime = new Date("".concat(eventData.eventDate, "T").concat(eventData.eventTime));
+      var timeDifference = currentTime - eventDateTime;
+      var timeDifferenceInHours = timeDifference / 1000 / 60 / 60;
+      return timeDifferenceInHours <= 24;
+    });
+    localStorage.setItem('events', JSON.stringify(filteredEvents));
+  };
+
+  // Remove expired events from localStorage when the page is loaded
+  removeExpiredEvents();
 
   // Load the event list from localStorage when the page is loaded
   loadEventList();
@@ -275,7 +292,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51281" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55694" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

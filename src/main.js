@@ -3,7 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const passwordForm = document.getElementById('passwordForm');
     const formContainer = document.getElementById('formContainer');
-    const initialPasswordHash = 'a794e600d504779d87143f73a48aa0f9553c3c3e2b9acdbb17a4ea4ff4c4f01f';
+    const initialPasswordHash = 'a794e600d504779d87143f73a48aa0f9553c3c3e2b9acdbb17a4ea4ff4c4f01f'; 
+
     // Store the hashed password in localStorage if it doesn't exist
     if (!localStorage.getItem('passwordHash')) {
         localStorage.setItem('passwordHash', initialPasswordHash);
@@ -35,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <br>
             <label for="eventTime">Event time:</label>
             <input type="time" id="eventTime" name="eventTime" required>
-            <br><br>
-            <button type="submit">Create event</button>
+            <br>
+            <button type="submit"><b>Create Event</b></button>
         `;
         formContainer.innerHTML = '';
         formContainer.appendChild(eventForm);
@@ -75,10 +76,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         storedEvents.forEach((eventData) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `Event: ${eventData.eventName} | Date: ${eventData.eventDate} | Time: ${eventData.eventTime}`;
+            listItem.textContent = `Event Name: ${eventData.eventName}, Event Date: ${eventData.eventDate}, Event Time: ${eventData.eventTime}`;
             eventList.appendChild(listItem);
         });
     };
+
+    // Function to filter out expired events from localStorage
+    const removeExpiredEvents = () => {
+        const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+        const currentTime = new Date();
+
+        const filteredEvents = storedEvents.filter(eventData => {
+            const eventDateTime = new Date(`${eventData.eventDate}T${eventData.eventTime}`);
+            const timeDifference = currentTime - eventDateTime;
+            const timeDifferenceInHours = timeDifference / 1000 / 60 / 60;
+            return timeDifferenceInHours <= 24;
+        });
+
+        localStorage.setItem('events', JSON.stringify(filteredEvents));
+    };
+
+    // Remove expired events from localStorage when the page is loaded
+    removeExpiredEvents();
 
     // Load the event list from localStorage when the page is loaded
     loadEventList();
@@ -86,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check the password and show the event form if the password is correct
     passwordForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const password = event.target.password.value
+        const password = event.target.password.value;
         const isCorrectPassword = checkPassword(password);
 
         if (isCorrectPassword) {
