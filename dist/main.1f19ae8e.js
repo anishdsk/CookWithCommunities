@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var showEventForm = function showEventForm() {
     var eventForm = document.createElement('form');
     eventForm.id = 'eventForm';
-    eventForm.innerHTML = "\n            <label for=\"eventName\">Event name:</label>\n            <input type=\"text\" id=\"eventName\" name=\"eventName\" required>\n            <br>\n            <label for=\"eventDate\">Event date:</label>\n            <input type=\"date\" id=\"eventDate\" name=\"eventDate\" required>\n            <br>\n            <label for=\"eventTime\">Event time:</label>\n            <input type=\"time\" id=\"eventTime\" name=\"eventTime\" required>\n            <br>\n            <button type=\"submit\"><b>Create Event</b></button>\n        ";
+    eventForm.innerHTML = "\n            <label for=\"eventName\">Event name:</label>\n            <input type=\"text\" id=\"eventName\" name=\"eventName\" required>\n            <br>\n            <label for=\"eventDate\">Event date:</label>\n            <input type=\"date\" id=\"eventDate\" name=\"eventDate\" required>\n            <br>\n            <label for=\"eventTime\">Event time:</label>\n            <input type=\"time\" id=\"eventTime\" name=\"eventTime\" required>\n            <br>\n            <br>\n            <button type=\"submit\"><b>Create Event</b></button>\n        ";
     formContainer.innerHTML = '';
     formContainer.appendChild(eventForm);
 
@@ -206,45 +206,64 @@ document.addEventListener('DOMContentLoaded', function () {
       // Display the event in the list
       var eventList = document.getElementById('eventList');
       var listItem = document.createElement('li');
-      listItem.textContent = "Event Name: ".concat(eventName, ", Event Date: ").concat(eventDate, ", Event Time: ").concat(eventTime);
+      listItem.textContent = "Event: ".concat(eventName, " | Date: ").concat(eventDate, " | Time: ").concat(eventTime, " ");
+
+      // Add a delete button next to each event
+      var deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', function () {
+        deleteEvent(currentEvents.indexOf(eventData));
+      });
+      listItem.appendChild(deleteButton);
       eventList.appendChild(listItem);
     });
   };
 
   // Function to load the event list from localStorage
   var loadEventList = function loadEventList() {
+    var showDeleteButton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     var eventList = document.getElementById('eventList');
     var storedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    storedEvents.forEach(function (eventData) {
+    storedEvents.forEach(function (eventData, index) {
       var listItem = document.createElement('li');
-      listItem.textContent = "Event Name: ".concat(eventData.eventName, ", Event Date: ").concat(eventData.eventDate, ", Event Time: ").concat(eventData.eventTime);
+      listItem.textContent = "Event: ".concat(eventData.eventName, " | Date: ").concat(eventData.eventDate, " | Time: ").concat(eventData.eventTime, " ");
+      if (showDeleteButton) {
+        // Add a delete button next to each event
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-button');
+        deleteButton.addEventListener('click', function () {
+          return deleteEvent(index);
+        });
+        listItem.appendChild(deleteButton);
+      }
       eventList.appendChild(listItem);
     });
   };
 
-  // Function to filter out expired events from localStorage
-  var removeExpiredEvents = function removeExpiredEvents() {
+  // Function to delete an event from the list and localStorage
+  var deleteEvent = function deleteEvent(index) {
     var storedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    var currentTime = new Date();
-    var filteredEvents = storedEvents.filter(function (eventData) {
-      var eventDateTime = new Date("".concat(eventData.eventDate, "T").concat(eventData.eventTime));
-      var timeDifference = currentTime - eventDateTime;
-      var timeDifferenceInHours = timeDifference / 1000 / 60 / 60;
-      return timeDifferenceInHours <= 24;
-    });
-    localStorage.setItem('events', JSON.stringify(filteredEvents));
+    storedEvents.splice(index, 1);
+    localStorage.setItem('events', JSON.stringify(storedEvents));
+
+    // Reload the event list
+    var eventList = document.getElementById('eventList');
+    eventList.innerHTML = '';
+    loadEventList(true);
   };
 
-  // Remove expired events from localStorage when the page is loaded
-  removeExpiredEvents();
+  // Remove the passwordEntered flag from localStorage on page refresh
+  localStorage.removeItem('passwordEntered');
 
   // Load the event list from localStorage when the page is loaded
-  loadEventList();
+  var showDeleteButton = JSON.parse(localStorage.getItem('passwordEntered')) || false;
+  loadEventList(showDeleteButton);
 
   // Check the password and show the event form if the password is correct
   passwordForm.addEventListener('submit', /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(event) {
-      var password, isCorrectPassword;
+      var password, isCorrectPassword, eventList;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
@@ -253,6 +272,10 @@ document.addEventListener('DOMContentLoaded', function () {
             isCorrectPassword = checkPassword(password);
             if (isCorrectPassword) {
               showEventForm();
+              eventList = document.getElementById('eventList');
+              eventList.innerHTML = '';
+              loadEventList(true); // Load the event list with the delete button visible
+              localStorage.setItem('passwordEntered', JSON.stringify(true));
             } else {
               alert('Incorrect password');
             }
@@ -292,7 +315,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55694" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62546" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -104,6 +104,26 @@ progress {
   vertical-align: baseline;
 }
 
+.delete-button {
+  background-color: #868383;
+  border: 0.0625rem solid #868383;
+  border-radius: 0.3125rem;
+  color: #495057;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-left: 0.5rem;
+  padding: 0.3125rem 0.625rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #000000;
+  color: white;
+}
+
 .day {
   padding: 20px;
   background-color: #f8f9fa;

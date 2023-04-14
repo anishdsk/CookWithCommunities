@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const passwordForm = document.getElementById('passwordForm');
     const formContainer = document.getElementById('formContainer');
-    const initialPasswordHash = 'a794e600d504779d87143f73a48aa0f9553c3c3e2b9acdbb17a4ea4ff4c4f01f'; 
+    const initialPasswordHash = 'a794e600d504779d87143f73a48aa0f9553c3c3e2b9acdbb17a4ea4ff4c4f01f';
 
     // Store the hashed password in localStorage if it doesn't exist
     if (!localStorage.getItem('passwordHash')) {
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <label for="eventTime">Event time:</label>
             <input type="time" id="eventTime" name="eventTime" required>
             <br>
+            <br>
             <button type="submit"><b>Create Event</b></button>
         `;
         formContainer.innerHTML = '';
@@ -64,43 +65,61 @@ document.addEventListener('DOMContentLoaded', () => {
             // Display the event in the list
             const eventList = document.getElementById('eventList');
             const listItem = document.createElement('li');
-            listItem.textContent = `Event Name: ${eventName}, Event Date: ${eventDate}, Event Time: ${eventTime}`;
+            listItem.textContent = `Event: ${eventName} | Date: ${eventDate} | Time: ${eventTime} `;
+
+            // Add a delete button next to each event
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                deleteEvent(currentEvents.indexOf(eventData));
+            });
+
+            listItem.appendChild(deleteButton);
             eventList.appendChild(listItem);
         });
     };
 
     // Function to load the event list from localStorage
-    const loadEventList = () => {
+    const loadEventList = (showDeleteButton = false) => {
         const eventList = document.getElementById('eventList');
         const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
 
-        storedEvents.forEach((eventData) => {
+        storedEvents.forEach((eventData, index) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `Event Name: ${eventData.eventName}, Event Date: ${eventData.eventDate}, Event Time: ${eventData.eventTime}`;
+            listItem.textContent = `Event: ${eventData.eventName} | Date: ${eventData.eventDate} | Time: ${eventData.eventTime} `;
+
+            if (showDeleteButton) {
+                // Add a delete button next to each event
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('delete-button');
+                deleteButton.addEventListener('click', () => deleteEvent(index));
+
+                listItem.appendChild(deleteButton);
+            }
+
             eventList.appendChild(listItem);
         });
     };
 
-    // Function to filter out expired events from localStorage
-    const removeExpiredEvents = () => {
+    // Function to delete an event from the list and localStorage
+    const deleteEvent = (index) => {
         const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
-        const currentTime = new Date();
+        storedEvents.splice(index, 1);
+        localStorage.setItem('events', JSON.stringify(storedEvents));
 
-        const filteredEvents = storedEvents.filter(eventData => {
-            const eventDateTime = new Date(`${eventData.eventDate}T${eventData.eventTime}`);
-            const timeDifference = currentTime - eventDateTime;
-            const timeDifferenceInHours = timeDifference / 1000 / 60 / 60;
-            return timeDifferenceInHours <= 24;
-        });
-
-        localStorage.setItem('events', JSON.stringify(filteredEvents));
+        // Reload the event list
+        const eventList = document.getElementById('eventList');
+        eventList.innerHTML = '';
+        loadEventList(true);
     };
 
-    // Remove expired events from localStorage when the page is loaded
-    removeExpiredEvents();
+    // Remove the passwordEntered flag from localStorage on page refresh
+    localStorage.removeItem('passwordEntered');
 
     // Load the event list from localStorage when the page is loaded
-    loadEventList();
+    const showDeleteButton = JSON.parse(localStorage.getItem('passwordEntered')) || false;
+    loadEventList(showDeleteButton);
 
     // Check the password and show the event form if the password is correct
     passwordForm.addEventListener('submit', async (event) => {
@@ -110,6 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isCorrectPassword) {
             showEventForm();
+            const eventList = document.getElementById('eventList');
+            eventList.innerHTML = '';
+            loadEventList(true); // Load the event list with the delete button visible
+            localStorage.setItem('passwordEntered', JSON.stringify(true));
         } else {
             alert('Incorrect password');
         }
