@@ -1,2 +1,2 @@
-# cook-for-communities
-A JavaScript project
+# Cook With Communities
+A Nonprofit Organization
