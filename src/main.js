@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showDeleteButton = JSON.parse(localStorage.getItem('passwordEntered')) || false;
     loadEventList(showDeleteButton);
 
-    // Check the password and show the event form if the password is correct
+    // Check password and show event form if password is correct
     passwordForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const password = event.target.password.value;

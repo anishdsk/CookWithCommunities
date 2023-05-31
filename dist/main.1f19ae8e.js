@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var showDeleteButton = JSON.parse(localStorage.getItem('passwordEntered')) || false;
   loadEventList(showDeleteButton);
 
-  // Check the password and show the event form if the password is correct
+  // Check password and show event form if password is correct
   passwordForm.addEventListener('submit', /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(event) {
       var password, isCorrectPassword, eventList;
@@ -315,7 +315,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53500" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60521" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
