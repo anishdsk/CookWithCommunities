@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "node ./node_modules/parcel-bundler/bin/cli serve ./src/index.html --port 8080",
+    "buildcss": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "build": "node ./node_modules/parcel-bundler/bin/cli build ./src/index.html --out-dir ./dist/",
     "lint": "node ./node_modules/eslint/bin/eslint . --ext .js --fix"
   },
@@ -19,6 +20,10 @@
     "eslint": "^8.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
+    "tailwindcss": "^3.3.1"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "parcel-bundler": "^1.12.5"
   }
 }
