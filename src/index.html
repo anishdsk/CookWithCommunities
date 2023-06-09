@@ -7,88 +7,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="container-fluid">
-  <div class="sm:hidden">
-    <label for="tabs" class="sr-only">Select a tab</label>
-    <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-    <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-      <option>Company</option>
-      <option>Events</option>
-      <option>About Us</option>
-    </select>
-  </div>
-  <div class="hidden sm:block">
-    <div class="border-b border-gray-200">
-      <nav class="-mb-px flex space-x-8" aria-label="Tabs">  
-        <a href="events.html" class="border-transparent text-orange-500 hover:border-orange-500 hover:text-orange-500 group inline-flex items-center border-b-2 py-4 px-1 text-sm font-medium">
-          <svg class="text-orange-500 group-hover:text-orange-500 -ml-0.5 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M4 16.5v-13h-.25a.75.75 0 010-1.5h12.5a.75.75 0 010 1.5H16v13h.25a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75v-2.5a.75.75 0 00-.75-.75h-2.5a.75.75 0 00-.75.75v2.5a.75.75 0 01-.75.75h-3.5a.75.75 0 010-1.5H4zm3-11a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5v-1zM7.5 9a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-1zM11 5.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5v-1zm.5 3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-1z" clip-rule="evenodd" />
-          </svg>
-          <span>Events</span>
-        </a>
-
-        <a href="index.html" class="border-blue-500 text-blue-500 group inline-flex items-center  py-4 px-1 text-sm font-medium" aria-current="page">
-          <svg class="text-blue-500 -ml-0.5 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
-          </svg>
-          <span>Cook With Communities</span>
-        </a>
-
-        <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-        <a href="aboutus.html" class="border-transparent text-orange-500 hover:border-orange-500 hover:text-orange-500 group inline-flex items-center border-b-2 py-4 px-1 text-sm font-medium">
-          <!-- Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500" -->
-          <svg class="text-orange-500 group-hover:text-orange-500 -ml-0.5 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
-          </svg>
-          <span>About Us</span>
-        </a>
-      </nav>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="overflow-hidden bg-white py-24 sm:py-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div class="lg:pr-8 lg:pt-4">
-            <div class="lg:max-w-lg">
-              <h2 class="text-base font-semibold leading-7 text-blue-500">Nourishing. Knowledge. Skills. Choices.</h2>
-              <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Cook With Communities</p>
-              <p class="mt-6 text-lg leading-8 text-gray-600">Providing communities with healthy food, hands-on cooking experience, and the skills necessary to nurture a better diet.</p>
-              <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                <div class="relative pl-9">
-                  <dt class="inline font-semibold text-gray-900">
-                    <svg class="absolute left-1 top-1 h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z"  clip-rule="evenodd" />
-                    </svg>
-                    Nourish
-                  </dt>
-                  <dd class="inline">Providing food and nutrition for people of all backgrounds locally and at scale.</dd>
-                </div>
-    
-                <div class="relative pl-9">
-                  <dt class="inline font-semibold text-gray-900">
-                    <svg class="absolute left-1 top-1 h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z" clip-rule="evenodd" />
-                    </svg>
-                    Knowledge/Skills
-                  </dt>
-                  <dd class="inline">Equiping people with the knowledge to eat healthy and the skills to cook healthy.</dd>
-                </div>
-    
-                <div class="relative pl-9">
-                  <dt class="inline font-semibold text-gray-900">
-                    <svg class="absolute left-1 top-1 h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M9.664 1.319a.75.75 0 01.672 0 41.059 41.059 0 018.198 5.424.75.75 0 01-.254 1.285 31.372 31.372 0 00-7.86 3.83.75.75 0 01-.84 0 31.508 31.508 0 00-2.08-1.287V9.394c0-.244.116-.463.302-.592a35.504 35.504 0 013.305-2.033.75.75 0 00-.714-1.319 37 37 0 00-3.446 2.12A2.216 2.216 0 006 9.393v.38a31.293 31.293 0 00-4.28-1.746.75.75 0 01-.254-1.285 41.059 41.059 0 018.198-5.424zM6 11.459a29.848 29.848 0 00-2.455-1.158 41.029 41.029 0 00-.39 3.114.75.75 0 00.419.74c.528.256 1.046.53 1.554.82-.21.324-.455.63-.739.914a.75.75 0 101.06 1.06c.37-.369.69-.77.96-1.193a26.61 26.61 0 013.095 2.348.75.75 0 00.992 0 26.547 26.547 0 015.93-3.95.75.75 0 00.42-.739 41.053 41.053 0 00-.39-3.114 29.925 29.925 0 00-5.199 2.801 2.25 2.25 0 01-2.514 0c-.41-.275-.826-.541-1.25-.797a6.985 6.985 0 01-1.084 3.45 26.503 26.503 0 00-1.281-.78A5.487 5.487 0 006 12v-.54z" clip-rule="evenodd" />
-                    </svg>
-                    Choices
-                  </dt>
-                  <dd class="inline">Instilling habits of making positive nutrition and eating choices to live healthier.</dd>
-                </div>
-              </dl>
+  <div class="relative bg-white">
+    <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
+      <div class="px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <img class="h-11" src="../cwclogo.jpeg" alt="Cook With Communities Logo">
+          <div class="hidden sm:mt-32 sm:flex lg:mt-16">
+            <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+              <p class="text-base font-semibold leading-7 text-blue-500">Nourishing. Knowledge. Skills. Choices</p>
             </div>
           </div>
-          <img src="../cwclogo.jpeg" alt="Company Logo" class="w-[48rem] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="10%" height="10%">
+          <h1 class="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">Cook With Communities</h1>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Cook With Communities is a 501(c)3 nonprofit health organization</p>
+          <div class="mt-10 flex items-center gap-x-6">
+            <a href="./events.html" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Upcoming Events</a>
+            <a href="#whatwedo" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+          </div>
         </div>
+      </div>
+      <div class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
+        <img class="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full" src="../hero.jpeg" alt="">
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">    
+    <div class="bg-white py-24 sm:py-32">
+      <div id="whatwedo" class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="text-base font-semibold leading-7 text-blue-500">Nutrition Assistance</p>
+          <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">What We Do</h2>
+          <p class="mt-2 text-lg leading-8 text-gray-600">We empower individuals to make sustainable food choices. Here's how we do it:</p>
+        </div>
+        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <article class="flex flex-col items-start justify-between">
+            <div class="relative w-full">
+              <img src="../food.jpeg" alt="" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+              <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+            </div>
+            <div class="max-w-xl">
+              <br>
+              <div class="group relative">
+                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900">
+                  <span class="absolute inset-0"></span>
+                  Strengthen local communities with educational cooking experiences
+                  <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"> CWC regularly organizes cooking classes with local food pantries in an effort to effect positive change within people's diets long term</p>
+                </h3>
+              </div>
+            </div>
+          </article>
+
+          <article class="flex flex-col items-start justify-between">
+            <div class="relative w-full">
+              <img src="../teamwork.jpeg" alt="" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+              <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+            </div>
+            <div class="max-w-xl">
+              <br>
+              <div class="group relative">
+                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900">
+                  <span class="absolute inset-0"></span>
+                  Provide nutrition and health education to local communities
+                  <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"> CWC provides learning opportunities in the classes we provide to explain the "why" of every ingredient that goes into our recipes to better inform our audience</p>
+                </h3>
+              </div>
+            </div>
+          </article>
+
+          <article class="flex flex-col items-start justify-between">
+            <div class="relative w-full">
+              <img src="../foodsampleotw.jpeg" alt="" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+              <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+            </div>
+            <div class="max-w-xl">
+              <br>
+              <div class="group relative">
+                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900">
+                  <span class="absolute inset-0"></span>
+                  Improving accessibility through weekly recipes and food samples
+                  <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">CWC strives to give people access to variety foods by providing samples of the many foods we make and distribute</p>
+                </h3>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>  
+
+    <div class="bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="text-base font-semibold leading-7 text-blue-500">Our Foundation</p>
+        <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">About Us</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">Cook With Communities was founded on the idea that everyone, no matter their socioeconomic status, should have access to healthy nutrition. As a result, our mission became to 
+          provide services and learning opportunities so everyone from all walks of life in local communities could get fed while learning how to make nutritious food with the least amount of reosurces needed.
+        </p>
+        <br>
+        <a href="./pictures.html"><b> Take a look at our work (  click me:)  )</b></a>
+      </div>
+    </div>
+    
+    
+    <div class="bg-white py-24 sm:py-32">
+      <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+        <div class="max-w-2xl">
+          <p class="text-base font-semibold leading-7 text-blue-500">Who We Are</p>
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Team</h2>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Our panel consists of members of various backgrounds and skill sets to help put together, scale, and sustain this organization. </p>
+        </div>
+        <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Roshan Sivakumar</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500">Co-Founder / CEO</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Sashwat Sriram</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500">Co-Founder</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Anish Senthilkumar</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500">Software Engineer</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Patrick Castillo</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500"></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Keenan Khalil</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500"></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Kyle Yamat</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500"></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Bella Mershad</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500"></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center gap-x-6">
+              <img class="h-16 w-16 rounded-full" src="" alt="">
+              <div>
+                <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Jayanth Reddy</h3>
+                <p class="text-sm font-semibold leading-6 text-blue-500"></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="text-base font-semibold leading-7 text-blue-500">Interested?</p>
+        <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Join Our Team</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">If you are interested in what we do, we encourage you to apply. Send us an email and please include a description about yourself, a resume if you have one, and why you'd like to join us!</p>
       </div>
     </div>
   </div>
@@ -98,19 +205,15 @@
     <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
       <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
         <div class="pb-6">
-          <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">About</a>
+          <a href="./pictures.html" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Our Work</a>
         </div>
   
         <div class="pb-6">
-          <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Events</a>
-        </div>
-  
-        <div class="pb-6">
-          <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Partner Pantries</a>
+          <a href="./events.html" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Events</a>
         </div>
       </nav>
       <div class="mt-10 flex justify-center space-x-10">
-        <a href="#" class="text-gray-400 hover:text-gray-500">
+        <a href="https://instagram.com/cookwithcommunities?igshid=MzRlODBiNWFlZA==" class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Instagram</span>
           <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
