@@ -1124,9 +1124,9 @@ select {
   background-color: rgb(79 70 229 / 0.1);
 }
 
-.bg-orange-500 {
+.bg-orange-600 {
   --tw-bg-opacity: 1;
-  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+  background-color: rgb(234 88 12 / var(--tw-bg-opacity));
 }
 
 .bg-white {
